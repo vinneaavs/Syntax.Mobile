@@ -1,4 +1,5 @@
-﻿using Syntax.Mobile.ViewModels;
+﻿using Syntax.Mobile.Models;
+using Syntax.Mobile.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,14 +15,14 @@ namespace Syntax.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TransactionsPage : ContentPage
     {
-        private TransactionsViewModel _viewModel;
+        public ObservableCollection<Transaction> Transactions { get; set; }
 
-        public TransactionsPage(ObservableCollection<Models.Transaction> transactions)
+        public TransactionsPage(TransactionsViewModel transactionsViewModel)
         {
             InitializeComponent();
-            _viewModel = new TransactionsViewModel();
-            BindingContext = _viewModel;
-            _viewModel.Transactions = transactions;
+
+            Transactions = transactionsViewModel.Transactions;
+            BindingContext = this;
         }
     }
 }

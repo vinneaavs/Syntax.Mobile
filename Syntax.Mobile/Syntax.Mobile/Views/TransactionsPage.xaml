@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syntax.Mobile.Views.TransactionsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Transactions}"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" BackgroundColor="#F5F5F5">
+                                <Label Text="{Binding Value, StringFormat='R$ {0:N2}'}"
+                                       FontSize="18"
+                                       TextColor="#3E3E3E"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}"
+                                       FontSize="16"
+                                       TextColor="#7F7F7F"/>
+                                <Label Text="{Binding Date, StringFormat='{0:d}'}"
+                                       FontSize="16"
+                                       TextColor="#7F7F7F"/>
+                                <Label Text="{Binding Type}"
+                                       FontSize="16"
+                                       TextColor="#7F7F7F"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

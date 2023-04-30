@@ -19,6 +19,9 @@ namespace Syntax.Mobile.Models
         public EventTypeTransaction Type { get; set; }
         public string IdUser { get; set; }
         public int IdTransactionClass { get; set; }
+        public string TransactionClassNavigation { get; set; }
+        public string UserNavigation { get; set; }
+
 
     }
 

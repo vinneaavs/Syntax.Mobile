@@ -1,33 +1,67 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Syntax.Mobile.Views.TransactionsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#8A05BE</Color>
+            <!-- Cor primária roxa -->
+            <Color x:Key="SecondaryColor">#FFFFFF</Color>
+            <!-- Cor secundária branca -->
+            <Color x:Key="TextColor">#000000</Color>
+            <!-- Cor do texto -->
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <ListView ItemsSource="{Binding Transactions}"
-                      SeparatorVisibility="None">
-                <ListView.ItemTemplate>
+        <Grid BackgroundColor="{StaticResource SecondaryColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Cabeçalho -->
+            <Grid BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="perfil.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" />
+                <StackLayout Grid.Column="1" Spacing="5">
+                    <Label Text="Nome do Usuário" TextColor="{StaticResource SecondaryColor}" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="Saldo Disponível" TextColor="{StaticResource SecondaryColor}" FontSize="18" FontAttributes="Bold" />
+                </StackLayout>
+            </Grid>
+
+            <!-- Coleção de Transações -->
+            <CollectionView x:Name="transactionsCollectionView"
+                            Grid.Row="1"
+                            BackgroundColor="{StaticResource SecondaryColor}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnItemSelected">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10" BackgroundColor="#F5F5F5">
-                                <Label Text="{Binding Value, StringFormat='R$ {0:N2}'}"
-                                       FontSize="18"
-                                       TextColor="#3E3E3E"
-                                       FontAttributes="Bold"/>
-                                <Label Text="{Binding Description}"
-                                       FontSize="16"
-                                       TextColor="#7F7F7F"/>
-                                <Label Text="{Binding Date, StringFormat='{0:d}'}"
-                                       FontSize="16"
-                                       TextColor="#7F7F7F"/>
-                                <Label Text="{Binding Type}"
-                                       FontSize="16"
-                                       TextColor="#7F7F7F"/>
-                            </StackLayout>
-                        </ViewCell>
+                        <Frame BackgroundColor="{StaticResource PrimaryColor}"
+                               BorderColor="{StaticResource PrimaryColor}"
+                               HasShadow="False"
+                               Padding="10"
+                               CornerRadius="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Value, StringFormat='R$ {0:F2}'}" TextColor="{StaticResource SecondaryColor}" FontSize="18" FontAttributes="Bold" />
+                                <Label Grid.Row="1" Text="{Binding Description}" TextColor="{StaticResource SecondaryColor}" LineBreakMode="WordWrap" />
+                                <Label Grid.Row="2" Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource SecondaryColor}" />
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

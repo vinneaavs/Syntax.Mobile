@@ -1,0 +1,43 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syntax.Mobile.Views.UserRequestRegisterPage"
+             BackgroundColor="#6A11CB">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Column="0" Spacing="15">
+                <StackLayout Grid.Column="0" Grid.Row="0" Spacing="5" VerticalOptions="Center">
+                    <Image Source="syntaxlogo.png" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" />
+                    <Label Text="Syntax Core" FontSize="25" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="50" HasShadow="True">
+                    <StackLayout Spacing="5">
+                        
+                        <Label Text="Email" FontSize="16" TextColor="Black" />
+                        <Entry x:Name="emailEntry" Placeholder="Enter your email" WidthRequest="200" />
+                        
+                        <Label Text="Name" FontSize="16" TextColor="Black" />
+                        <Entry x:Name="nameEntry" Placeholder="Enter your name" WidthRequest="200" />
+                        
+                        <Label Text="Lastname" FontSize="16" TextColor="Black" />
+                        <Entry x:Name="lastNameEntry" Placeholder="Enter your last name" WidthRequest="200" />
+
+                        <Label Text="Password" FontSize="16" TextColor="Black" />
+                        <Entry x:Name="passwordEntry" Placeholder="Enter your password" IsPassword="True" HeightRequest="60" />
+
+                        <Label Text="Confirm Password" FontSize="16" TextColor="Black" />
+                        <Entry x:Name="confirmPasswordEntry" Placeholder="Confirm your password" IsPassword="True" HeightRequest="60" />
+
+                        <Button Text="Confirm" FontSize="18" BackgroundColor="#6A11CB" TextColor="White" Clicked="RegisterRequestButton_Clicked" CornerRadius="8" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

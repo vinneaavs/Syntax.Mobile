@@ -21,14 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\TransactionsPage.xaml.cs">
-      <DependentUpon>TransactionsPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
+    <EmbeddedResource Update="Views\TransactionDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\TransactionsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserRequestRegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+	  <AndroidResource Include="Resources\drawable\syntaxlogo.png" />
   </ItemGroup>
 </Project>

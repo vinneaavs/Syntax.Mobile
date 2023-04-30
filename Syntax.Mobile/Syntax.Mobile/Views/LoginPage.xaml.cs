@@ -1,5 +1,4 @@
 ﻿using Syntax.Mobile.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +16,13 @@ namespace Syntax.Mobile.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        private async void ButtonRegister_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new UserRequestRegisterPage());
+
+        }
+
+
     }
 }

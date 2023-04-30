@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syntax.Mobile.Views.TransactionDetailPage"
+             Title="Transaction Detail">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <!-- Defina o layout e os elementos da página de detalhes da transação -->
+            <Label Text="Transaction Details"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20" />
+
+            <Label x:Name="valueLabel"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+
+            <Label x:Name="descriptionLabel"
+                   FontSize="16" />
+
+            <Label x:Name="dateLabel"
+                   FontSize="16" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

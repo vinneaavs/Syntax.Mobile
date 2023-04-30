@@ -1,19 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Syntax.Mobile.Views.LoginPage"
-             xmlns:local="clr-namespace:Syntax.Mobile.Models"
-             Shell.NavBarIsVisible="False">    
-    <ContentPage.BindingContext>
-        <local:Login/>
-    </ContentPage.BindingContext>
+             BackgroundColor="#6A11CB">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Label Text="Email" FontSize="Large"/>
-            <Entry x:Name="EmailEntry" Text="{Binding Login.Email, Mode=TwoWay}"/>
-            <Label Text="Password" FontSize="Large"/>
-            <Entry x:Name="PasswordEntry" Text="{Binding Login.Password, Mode=TwoWay}" IsPassword="True"/>
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <!-- Coluna principal, ocupando todo o espaço disponível -->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <!-- Linha do Entry com altura maior -->
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Column="0" Spacing="50">
+                <StackLayout Grid.Column="0" Grid.Row="0" Spacing="10" VerticalOptions="Center">
+                    <Image Source="syntaxlogo.png" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" />
+                    <Label Text="Syntax Core" FontSize="25" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="50" HasShadow="True">
+                    <StackLayout Spacing="15">
+                        <Label Text="Email" FontSize="16" TextColor="Black" />
+                        <Entry Text="{Binding Login.Email}" Placeholder="Enter your email" WidthRequest="200" />
+
+                        <Label Text="Password" FontSize="16" TextColor="Black" />
+                        <Entry Text="{Binding Login.Password}" Placeholder="Enter your password" IsPassword="True" HeightRequest="60" />
+
+                        <Button Text="Login" FontSize="18" BackgroundColor="#6A11CB" TextColor="White" Command="{Binding LoginCommand}" CornerRadius="8" />
+
+                        <Button Text="Register" FontSize="18" BackgroundColor="#6A11CB" TextColor="White" Clicked="ButtonRegister_Clicked" CornerRadius="8" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

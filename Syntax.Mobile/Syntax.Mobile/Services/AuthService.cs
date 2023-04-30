@@ -9,8 +9,9 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Syntax.Mobile.ViewModels;
-
+using Newtonsoft.Json.Linq;
+using static Android.Media.Session.MediaSession;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Syntax.Mobile.Services
 {
@@ -28,7 +29,7 @@ namespace Syntax.Mobile.Services
         public async Task<ApiResponse<LoginResponse>> Login(Login login)
         {
             var client = new HttpClient();
-            string uri = "http://10.0.2.2:5069/api/user/login";
+            string uri = "https://syntaxapi.azurewebsites.net/api/user/login";
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var json = JsonConvert.SerializeObject(login);
@@ -39,14 +40,18 @@ namespace Syntax.Mobile.Services
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
-                Application.Current.Properties["SyntaxToken"] = result.Token;
+                string token = result.Token;
+                Application.Current.Properties["SyntaxToken"] = token;
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
 
                 if (Application.Current.Properties.ContainsKey("SyntaxToken"))
                 {
-                    var transactionsViewModel = new TransactionsViewModel();
-                    var transactionsPage = new TransactionsPage(transactionsViewModel);
+                    
 
-                    await _navigation.PushAsync(transactionsPage);
+                    await _navigation.PushAsync(new TransactionsPage());
+
+
                 }
             }
             else

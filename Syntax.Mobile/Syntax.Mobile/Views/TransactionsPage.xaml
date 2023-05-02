@@ -5,11 +5,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="PrimaryColor">#8A05BE</Color>
-            <!-- Cor primária roxa -->
             <Color x:Key="SecondaryColor">#FFFFFF</Color>
-            <!-- Cor secundária branca -->
             <Color x:Key="TextColor">#000000</Color>
-            <!-- Cor do texto -->
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -19,20 +16,18 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Cabeçalho -->
             <Grid BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Source="perfil.jpg" Aspect="AspectFill" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Image Source="profile" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" VerticalOptions="Center" />
                 <StackLayout Grid.Column="1" Spacing="5">
-                    <Label Text="Nome do Usuário" TextColor="{StaticResource SecondaryColor}" FontSize="24" FontAttributes="Bold" />
-                    <Label Text="Saldo Disponível" TextColor="{StaticResource SecondaryColor}" FontSize="18" FontAttributes="Bold" />
+                    <Label x:Name="nomeUsuarioLabel" TextColor="{StaticResource SecondaryColor}" FontSize="14" FontAttributes="Bold" />
+                    <Label Text="Balance: " TextColor="{StaticResource SecondaryColor}" FontSize="14" FontAttributes="Bold" />
                 </StackLayout>
             </Grid>
 
-            <!-- Coleção de Transações -->
             <CollectionView x:Name="transactionsCollectionView"
                             Grid.Row="1"
                             BackgroundColor="{StaticResource SecondaryColor}"

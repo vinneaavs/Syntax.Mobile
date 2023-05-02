@@ -37,7 +37,7 @@ namespace Syntax.Mobile.Views
                 return;
 
             var httpClient = new HttpClient();
-            string uri = $"https://20.119.16.35/api/user/register";
+            string uri = $"https://syntaxapi.azurewebsites.net/api/user/register";
 
             var jsonContent = new StringContent(JsonConvert.SerializeObject(userRegisterRequest), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(uri, jsonContent);
@@ -85,5 +85,7 @@ namespace Syntax.Mobile.Views
 
             return true;
         }
+
+       
     }
 }

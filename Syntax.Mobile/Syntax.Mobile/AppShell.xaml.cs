@@ -13,8 +13,13 @@ namespace Syntax.Mobile
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+            Routing.RegisterRoute(nameof(InputExpensePage), typeof(InputExpensePage));
+            Routing.RegisterRoute(nameof(UserRequestRegisterPage), typeof(UserRequestRegisterPage));
 
-            Application.Current.MainPage = new LoginPage();
+
+
+            Application.Current.MainPage = new NavigationPage(new HomePage());
 
 
         }

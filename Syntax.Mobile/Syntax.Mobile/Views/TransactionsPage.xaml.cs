@@ -43,12 +43,13 @@ namespace Syntax.Mobile.Views
                 {
                     JwtSecurityToken jwtToken = tokenHandler.ReadJwtToken(token);
                     string idUser = jwtToken.Claims.FirstOrDefault(claim => claim.Type == "id")?.Value;
+                    string displayName = jwtToken.Claims.FirstOrDefault(claim => claim.Type == "displayName")?.Value;
 
                     if (!string.IsNullOrEmpty(idUser))
                     {
                         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                        string uri = $"https://20.119.16.35/api/transaction/user/{idUser}"; 
+                        string uri = $"https://syntaxapi.azurewebsites.net/api/transaction/user/{idUser}"; 
 
                         try
                         {
@@ -61,6 +62,7 @@ namespace Syntax.Mobile.Views
                                 var transactions = JsonConvert.DeserializeObject<IEnumerable<Models.Transaction>>(content);
 
                                 transactionsCollectionView.ItemsSource = transactions;
+                                nomeUsuarioLabel.Text = $"Wellcome, {displayName}";
                             }
                             else
                             {

@@ -102,6 +102,21 @@
     <AndroidResource Include="Resources\drawable\syntaxlogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bgImage.png" />
+    <AndroidResource Include="Resources\drawable\bgImage1.png" />
+    <AndroidResource Include="Resources\drawable\close.png" />
+    <AndroidResource Include="Resources\drawable\facebook.png" />
+    <AndroidResource Include="Resources\drawable\google.png" />
+    <AndroidResource Include="Resources\drawable\hamburgerMenu.png" />
+    <AndroidResource Include="Resources\drawable\im1.png" />
+    <AndroidResource Include="Resources\drawable\im2.png" />
+    <AndroidResource Include="Resources\drawable\im3.png" />
+    <AndroidResource Include="Resources\drawable\im4.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
+    <AndroidResource Include="Resources\drawable\search2x.png" />
+    <AndroidResource Include="Resources\drawable\search3x.png" />
+    <AndroidResource Include="Resources\drawable\twitter.png" />
+    <AndroidResource Include="Resources\drawable\profile.png" />
     <Content Include="Resources\xml\network_security_config.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

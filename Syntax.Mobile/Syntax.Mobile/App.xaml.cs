@@ -14,7 +14,7 @@ namespace Syntax.Mobile
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<INavigationService, NavigationService>();
             MainPage = new AppShell();
         }
 

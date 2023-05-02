@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Syntax.Mobile.Views.InputExpensePage"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="#791AE5">
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout >
+            <StackLayout  Margin="0,0,0,0"  Orientation="Horizontal">
+                <StackLayout Margin="20,10,20,0" Spacing="20">
+                    <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Text="Syntax Core App"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+                <Image Source="syntaxlogo" WidthRequest="100" />
+            </StackLayout>
+            <yummy:PancakeView
+            Margin="0,20,0,0"
+            Padding="30,50,30,30"
+            BackgroundColor="White"
+            CornerRadius="40,40,0,0"
+            VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="30">
+                    <StackLayout Spacing="30">
+                        <StackLayout Spacing="10">
+                            <Label
+                        Margin="20,0,0,0"
+                        FontSize="20"
+                        Text="Value"
+                        TextColor="#99A1B3" />
+                            <yummy:PancakeView
+                        Padding="10,0,0,0"
+                        BackgroundColor="White"
+                        CornerRadius="15"
+                        HeightRequest="50">
+                                <Entry Placeholder="Value" Keyboard="Numeric" x:Name="valueEntry" />
+                            </yummy:PancakeView>
+
+                        </StackLayout>
+                        <StackLayout Spacing="5">
+                            <Label
+                        Margin="20,0,0,0"
+                        FontSize="20"
+                        Text="Description"
+                        TextColor="#99A1B3" />
+                            <yummy:PancakeView
+                        Padding="10,0,0,0"
+                        BackgroundColor="White"
+                        CornerRadius="15"
+                        HeightRequest="50">
+                                <Entry Placeholder="Description" x:Name="descriptionEntry" />
+                            </yummy:PancakeView>
+                        </StackLayout>
+                        <StackLayout Spacing="5">
+                            <Label
+                        Margin="20,0,0,0"
+                        FontSize="20"
+                        Text="Date"
+                        TextColor="#99A1B3" />
+                            <yummy:PancakeView
+                        Padding="10,0,0,0"
+                        BackgroundColor="White"
+                        CornerRadius="15"
+                        HeightRequest="50">
+                                <DatePicker x:Name="datePicker" />
+                            </yummy:PancakeView>
+                        </StackLayout>
+                        <StackLayout Spacing="5">
+                            <Label
+                                Margin="20,0,0,0"
+                                FontSize="20"
+                                Text="Type"
+                                TextColor="#99A1B3" />
+                            <Frame
+                                Padding="10"
+                                BackgroundColor="White"
+                                CornerRadius="15"
+                                HeightRequest="50">
+                                <Picker x:Name="typePicker1"
+                                        Title="Select Type"
+                                        TextColor="#000000"
+                                        SelectedIndexChanged="TypePicker_SelectedIndexChanged">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Despesas</x:String>
+                                            <x:String>Renda</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="5">
+                            <Label
+                                Margin="20,0,0,0"
+                                FontSize="20"
+                                Text="TransactionClass"
+                                TextColor="#99A1B3" />
+                            <Frame Padding="10" BackgroundColor="White" CornerRadius="15" HeightRequest="50">
+
+                                <Picker x:Name="typePicker"
+                                        Title="TransactionClass"
+                                        TextColor="#000000"
+                                        >
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+
+                            </Frame>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TypePickerTC_Tapped" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Spacing="5">
+                            <StackLayout Spacing="5">
+                        <yummy:PancakeView
+                            BackgroundColor="#791AE5"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            WidthRequest="150">
+                            <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Add"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand">
+                            </Label>
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </yummy:PancakeView.GestureRecognizers>
+                        </yummy:PancakeView>
+                    </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <StackLayout Spacing="5">
+                                <yummy:PancakeView
+                            BackgroundColor="#791AE5"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            WidthRequest="150">
+                                    <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Close"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand">
+                                    </Label>
+                                    <yummy:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                                    </yummy:PancakeView.GestureRecognizers>
+                                </yummy:PancakeView>
+                            </StackLayout>
+
+                        </StackLayout>
+
+
+
+                    </Grid>
+
+
+
+                </StackLayout>
+            </yummy:PancakeView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -12,6 +12,7 @@ using Xamarin.Forms;
 using Newtonsoft.Json.Linq;
 using static Android.Media.Session.MediaSession;
 using System.IdentityModel.Tokens.Jwt;
+using Android.Content.Res;
 
 namespace Syntax.Mobile.Services
 {
@@ -20,10 +21,12 @@ namespace Syntax.Mobile.Services
         private readonly HttpClient _httpClient;
         private readonly INavigation _navigation;
 
+
         public AuthService(HttpClient httpClient, INavigation navigation)
         {
             _httpClient = httpClient;
             _navigation = navigation;
+
         }
 
         public async Task<ApiResponse<LoginResponse>> Login(Login login)
@@ -47,11 +50,10 @@ namespace Syntax.Mobile.Services
 
                 if (Application.Current.Properties.ContainsKey("SyntaxToken"))
                 {
-                    
 
-                    await _navigation.PushAsync(new TransactionsPage());
+                    await Shell.Current.Navigation.PopToRootAsync();
 
-
+                    await Shell.Current.Navigation.PushAsync(new HomePage(), true);
                 }
             }
             else

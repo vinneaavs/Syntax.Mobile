@@ -17,7 +17,7 @@ namespace Syntax.Mobile.Views
 
             var valueLabel = new Label
             {
-                Text = $"Value: {transaction.Value:C}",
+                Text = $"Value: R$: {transaction.Value}",
                 FontSize = 18,
                 FontAttributes = FontAttributes.Bold
             };

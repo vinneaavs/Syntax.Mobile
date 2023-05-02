@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Syntax.Mobile.Views.TransactionsPage">
     <ContentPage.Resources>
@@ -20,12 +19,27 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Image Source="profile" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" VerticalOptions="Center" />
-                <StackLayout Grid.Column="1" Spacing="5">
-                    <Label x:Name="nomeUsuarioLabel" TextColor="{StaticResource SecondaryColor}" FontSize="14" FontAttributes="Bold" />
-                    <Label Text="Balance: " TextColor="{StaticResource SecondaryColor}" FontSize="14" FontAttributes="Bold" />
-                </StackLayout>
+
+                <Grid Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Image Source="profile" Aspect="AspectFill" HeightRequest="50" WidthRequest="50" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <StackLayout Spacing="5">
+                        <Label x:Name="nomeUsuarioLabel" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="balanceLabel" FontSize="18" FontAttributes="Bold" />
+                    </StackLayout>
+                </Grid>
+
+                <Grid Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center">
+                    <Image Source="back" Aspect="AspectFit" HeightRequest="30" WidthRequest="30">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
             </Grid>
 
             <CollectionView x:Name="transactionsCollectionView"
@@ -52,6 +66,7 @@
                                 <Label Grid.Row="0" Text="{Binding Value, StringFormat='R$ {0:F2}'}" TextColor="{StaticResource SecondaryColor}" FontSize="18" FontAttributes="Bold" />
                                 <Label Grid.Row="1" Text="{Binding Description}" TextColor="{StaticResource SecondaryColor}" LineBreakMode="WordWrap" />
                                 <Label Grid.Row="2" Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource SecondaryColor}" />
+                                <Label Grid.Row="3" Text="{Binding Type}" TextColor="{StaticResource SecondaryColor}" />
                             </Grid>
                         </Frame>
                     </DataTemplate>

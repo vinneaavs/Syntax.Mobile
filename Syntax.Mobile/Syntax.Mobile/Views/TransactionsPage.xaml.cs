@@ -14,6 +14,8 @@ using System.Net.Http.Json;
 using System.Transactions;
 using Newtonsoft.Json;
 using Syntax.Mobile.Models;
+using Xamarin.Forms.Internals;
+using System.ComponentModel;
 
 namespace Syntax.Mobile.Views
 {
@@ -21,6 +23,10 @@ namespace Syntax.Mobile.Views
     public partial class TransactionsPage : ContentPage
     {
         private HttpClient _httpClient;
+
+        public decimal Balance { get; set; }
+       
+
 
         public TransactionsPage()
         {
@@ -60,9 +66,18 @@ namespace Syntax.Mobile.Views
                                 var content = await response.Content.ReadAsStringAsync();
                                 Console.WriteLine(content);
                                 var transactions = JsonConvert.DeserializeObject<IEnumerable<Models.Transaction>>(content);
+                                decimal balance = 0;
+
+                                transactions.ForEach(transaction =>
+                                {
+                                    balance += transaction.Type == EventTypeTransaction.Despesas ? -transaction.Value : transaction.Value;
+                                    Balance = balance;
+                                });
+
+                                balanceLabel.Text = $"Balance: R$:{Balance}";
 
                                 transactionsCollectionView.ItemsSource = transactions;
-                                nomeUsuarioLabel.Text = $"Wellcome, {displayName}";
+                                nomeUsuarioLabel.Text = $"Welcome, {displayName}";
                             }
                             else
                             {
@@ -137,9 +152,11 @@ namespace Syntax.Mobile.Views
             }
         }
 
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HomePage());
 
-
-
+        }
     }
 
 

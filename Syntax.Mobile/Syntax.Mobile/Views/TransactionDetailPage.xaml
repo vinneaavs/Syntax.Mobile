@@ -5,7 +5,6 @@
              Title="Transaction Detail">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <!-- Defina o layout e os elementos da página de detalhes da transação -->
             <Label Text="Transaction Details"
                    FontSize="24"
                    FontAttributes="Bold"

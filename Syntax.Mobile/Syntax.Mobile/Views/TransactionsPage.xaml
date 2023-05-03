@@ -1,4 +1,5 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:local="clr-namespace:Syntax.Mobile.Views"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Syntax.Mobile.Views.TransactionsPage">
     <ContentPage.Resources>
@@ -6,7 +7,10 @@
             <Color x:Key="PrimaryColor">#8A05BE</Color>
             <Color x:Key="SecondaryColor">#FFFFFF</Color>
             <Color x:Key="TextColor">#000000</Color>
+            <local:TransactionTypeToColorConverter x:Key="TransactionTypeToColorConverter" />
+
         </ResourceDictionary>
+
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource SecondaryColor}">
@@ -43,31 +47,46 @@
             </Grid>
 
             <CollectionView x:Name="transactionsCollectionView"
-                            Grid.Row="1"
-                            BackgroundColor="{StaticResource SecondaryColor}"
-                            SelectionMode="Single"
-                            SelectionChanged="OnItemSelected">
+                Grid.Row="1"
+                BackgroundColor="#F9F9F9"
+                SelectionMode="Single"
+                SelectionChanged="OnItemSelected">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    <GridItemsLayout Orientation="Vertical"
+                         Span="1" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="{StaticResource PrimaryColor}"
-                               BorderColor="{StaticResource PrimaryColor}"
-                               HasShadow="False"
-                               Padding="10"
-                               CornerRadius="10">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Text="{Binding Value, StringFormat='R$ {0:F2}'}" TextColor="{StaticResource SecondaryColor}" FontSize="18" FontAttributes="Bold" />
-                                <Label Grid.Row="1" Text="{Binding Description}" TextColor="{StaticResource SecondaryColor}" LineBreakMode="WordWrap" />
-                                <Label Grid.Row="2" Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource SecondaryColor}" />
-                                <Label Grid.Row="3" Text="{Binding Type}" TextColor="{StaticResource SecondaryColor}" />
-                            </Grid>
+                        <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="8"
+                   HasShadow="False"
+                   Padding="12"
+                   Margin="8,8,8,0">
+                            <StackLayout Spacing="8">
+                                <Label Text="{Binding Value, StringFormat='R$ {0:F2}'}"
+                                   TextColor="{Binding Type, Converter={StaticResource TransactionTypeToColorConverter}}" 
+                           FontSize="16"
+                           FontAttributes="Bold" />
+                                <Label Text="{Binding Description}"
+                           TextColor="#666666"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           LineBreakMode="TailTruncation" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                               TextColor="#999999"
+                               FontSize="12"
+                               FontAttributes="Bold" />
+                                    <Label Text=" | "
+                               TextColor="#999999"
+                               FontSize="12"
+                               FontAttributes="Bold" />
+                                    <Label Text="{Binding Type}"
+                               TextColor="#999999"
+                               FontSize="12"
+                               FontAttributes="Bold" />
+                                </StackLayout>
+                            </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

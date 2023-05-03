@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using Syntax.Mobile.Models;
 using Xamarin.Forms.Internals;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Syntax.Mobile.Views
 {
@@ -25,7 +26,7 @@ namespace Syntax.Mobile.Views
         private HttpClient _httpClient;
 
         public decimal Balance { get; set; }
-       
+
 
 
         public TransactionsPage()
@@ -55,7 +56,7 @@ namespace Syntax.Mobile.Views
                     {
                         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                        string uri = $"https://syntaxapi.azurewebsites.net/api/transaction/user/{idUser}"; 
+                        string uri = $"https://syntaxapi.azurewebsites.net/api/transaction/user/{idUser}";
 
                         try
                         {
@@ -77,7 +78,7 @@ namespace Syntax.Mobile.Views
                                 balanceLabel.Text = $"Balance: R$:{Balance}";
 
                                 transactionsCollectionView.ItemsSource = transactions;
-                                nomeUsuarioLabel.Text = $"Welcome, {displayName}";
+                                nomeUsuarioLabel.Text = $"Welcome {displayName}";
                             }
                             else
                             {
@@ -92,21 +93,19 @@ namespace Syntax.Mobile.Views
                     }
                     else
                     {
-                        await Navigation.PopToRootAsync(); // Volta para a tela inicial (login)
+                        await Navigation.PopToRootAsync();
                     }
                 }
                 else
                 {
-                    // O token JWT não é válido
-                    // Redirecionar o usuário de volta para a tela de login
-                    await Navigation.PopToRootAsync(); // Volta para a tela inicial (login)
+
+                    await Navigation.PopToRootAsync();
                 }
             }
             else
             {
-                // O token JWT não está presente nas propriedades do aplicativo
-                // Redirecionar o usuário de volta para a tela de login
-                await Navigation.PopToRootAsync(); // Volta para a tela inicial (login)
+
+                await Navigation.PopToRootAsync();
             }
         }
         private Models.Transaction _selectedTransaction;
@@ -120,7 +119,6 @@ namespace Syntax.Mobile.Views
                     _selectedTransaction = value;
                     OnPropertyChanged(nameof(SelectedTransaction));
 
-                    // Navegar para a página de detalhes do item selecionado
                     if (_selectedTransaction != null)
                     {
                         var detailPage = new TransactionDetailPage(_selectedTransaction);
@@ -141,7 +139,6 @@ namespace Syntax.Mobile.Views
 
                 if (result)
                 {
-                    // Código para lidar com o botão OK pressionado
                 }
                 else
                 {
@@ -157,8 +154,8 @@ namespace Syntax.Mobile.Views
             await Navigation.PushAsync(new HomePage());
 
         }
+
+        
     }
-
-
 }
 
